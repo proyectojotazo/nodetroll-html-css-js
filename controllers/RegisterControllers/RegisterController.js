@@ -2,7 +2,7 @@ import { InputControllerUserName, InputControllerPassword } from "./InputControl
 import DataServices from "../../services/DataServices.js"
 import PubSub from "../../services/PubSub.js"
 
-export default class FormController {
+export default class RegisterController {
     constructor(element) {
         this.element = element
 

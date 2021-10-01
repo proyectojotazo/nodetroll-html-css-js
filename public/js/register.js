@@ -1,11 +1,11 @@
 import LoaderController from '../../controllers/LoaderController.js'
 import ModalController from '../../controllers/ModalController.js'
-import FormController from '../../controllers/RegisterControllers/FormController.js'
+import RegisterController from '../../controllers/RegisterControllers/RegisterController.js'
 
 window.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form')
 
-    new FormController(form)
+    new RegisterController(form)
 
     const modalContainer = document.querySelector('.modal-container')
 
