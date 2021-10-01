@@ -11,7 +11,6 @@ export default {
             },
             body: JSON.stringify({ username, password })
         }
-        debugger
         try {
             const response = await fetch(url, requestConfig)
             const data = await response.json()

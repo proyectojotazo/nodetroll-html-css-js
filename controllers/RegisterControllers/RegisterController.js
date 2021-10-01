@@ -1,4 +1,4 @@
-import { InputControllerUserName, InputControllerPassword } from "./InputController.js"
+import { InputControllerUserName, InputControllerPassword } from "./RegisterInputController.js"
 import DataServices from "../../services/DataServices.js"
 import PubSub from "../../services/PubSub.js"
 
@@ -34,10 +34,7 @@ export default class RegisterController {
                     this.enableInputs()
                     this.resetInputs()
                     this.resetInputStyles()
-
                 }
-            } else {
-                console.log('Ha ocurrido un error')
             }
         })
 
