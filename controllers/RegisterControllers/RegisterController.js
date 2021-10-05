@@ -20,12 +20,11 @@ export default class RegisterController {
         this.element.addEventListener('submit', async(e) => {
             e.preventDefault()
             if (this.validFields()) {
-                const userName = this.inputUserName.getValue()
-                const password = this.inpPass.getValue()
+                const { username, password } = this.getInputsData()
                 PubSub.publish(PubSub.events.SHOW_LOADER)
                 this.disableInputs()
                 try {
-                    await DataServices.registerUser(userName, password)
+                    await DataServices.registerUser(username, password)
                     PubSub.publish(PubSub.events.SHOW_SUCCESS)
                 } catch (error) {
                     PubSub.publish(PubSub.events.SHOW_ERROR, error)
@@ -33,7 +32,6 @@ export default class RegisterController {
                     PubSub.publish(PubSub.events.HIDE_LOADER)
                     this.enableInputs()
                     this.resetInputs()
-                    this.resetInputStyles()
                 }
             }
         })
@@ -65,6 +63,13 @@ export default class RegisterController {
         return (validUser && validPass && validPassRep && samePass)
     }
 
+    getInputsData() {
+        return {
+            username: this.inputUserName.getValue(),
+            password: this.inpPass.getValue()
+        }
+    }
+
     checkField(validate, field) {
         if (!validate) field.showError()
         else field.showSuccess()
@@ -75,6 +80,7 @@ export default class RegisterController {
     }
 
     resetInputs() {
+        this.resetInputStyles()
         this.inputsList.forEach(input => input.resetValue())
     }
 
