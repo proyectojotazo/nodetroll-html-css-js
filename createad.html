@@ -5,11 +5,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nodetroll-create</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Create-Wallatroll</title>
 </head>
 
 <body>
-
+    <h1 class="text-center py-3 border-bottom">WALLATROLL</h1>
+    <form class="container-fluid" novalidate>
+        <div class="row justify-content-center">
+            <div class="col-sm-4 my-2">
+                <label for="adname" class="mb-2">
+                Nombre del Artículo
+            </label>
+                <input type="text" class="form-control" name="adname" id="adname" autofocus>
+                <div class="form-text"></div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-sm-4 my-2">
+                <label for="adphoto" class="mb-2">
+                Foto del Artículo
+            </label>
+                <input type="file" class="form-control" name="adphoto" id="adphoto">
+                <div class="form-text"></div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-sm-4 my-2">
+                <label for="adPrice" class="mb-2">
+                Precio
+            </label>
+                <input type="number" class="form-control" name="adPrice" id="adPrice">
+                <div class="form-text"></div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-2 my-2">
+                <input class="form-check-input" type="radio" name="sellbuy" id="sellRadio" value="sell" checked>
+                <label class="form-check-label" for="sellRadio">
+                  Venta
+                </label>
+            </div>
+            <div class="col-2 my-2">
+                <input class="form-check-input" type="radio" name="sellbuy" id="buyRadio" value="buy">
+                <label class="form-check-label" for="buyRadio">
+                  Compra
+                </label>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-sm-4 mt-3">
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </form>
+    <script src="./public/js/create.js" type="module"></script>
 </body>
 
 </html>

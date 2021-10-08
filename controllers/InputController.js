@@ -23,6 +23,10 @@ export default class InputController {
         return this.element.value
     }
 
+    isEmpty() {
+        return this.getValue() === ''
+    }
+
     resetValue() {
         this.element.value = ''
     }
