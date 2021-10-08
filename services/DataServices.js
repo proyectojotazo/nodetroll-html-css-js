@@ -1,5 +1,4 @@
-const PORT = 8000
-const URL = `http://localhost:${PORT}/`
+const URL = 'http://localhost:8000/'
 
 export default {
     post: async function(path, username, password) {
@@ -27,5 +26,11 @@ export default {
     registerUser: async function(username, password) {
         const path = 'auth/register'
         return await this.post(path, username, password)
+    },
+
+    loginUser: async function(username, password) {
+        const path = 'auth/login'
+        const { accessToken: token } = await this.post(path, username, password)
+        localStorage.setItem('token', token)
     }
 }

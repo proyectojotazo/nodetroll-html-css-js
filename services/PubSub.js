@@ -5,6 +5,7 @@ export default {
 
     events: {
         SHOW_SUCCESS: 'SHOW_SUCCESS',
+        SHOW_LOGGED: 'SHOW_LOGGED',
         SHOW_ERROR: 'SHOW_ERROR',
         SHOW_LOADER: 'SHOW_LOADER',
         HIDE_LOADER: 'HIDE_LOADER'

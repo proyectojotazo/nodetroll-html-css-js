@@ -12,12 +12,20 @@ export default class ModalController {
         PubSub.subscribe(PubSub.events.SHOW_SUCCESS, () => {
             this.showSuccess()
         })
+
+        PubSub.subscribe(PubSub.events.SHOW_LOGGED, params => {
+            const { username, next } = params
+            this.showLogged(username, next)
+        })
     }
 
-    attachEventCloseListener() {
+    attachEventCloseListener(next = '') {
         const btnClose = this.element.querySelector('button')
         btnClose.addEventListener('click', () => {
             this.element.classList.remove('active')
+            if (next !== '') {
+                window.location.href = next
+            }
         })
     }
 
@@ -27,6 +35,10 @@ export default class ModalController {
             'Usuario ya registrado' :
             error.message === 'Failed to fetch' ?
             'Error al enviar la petición' :
+            error.message === 'Wrong username/password' ?
+            'Usuario y/o contraseña incorrectos' :
+            error.message === 'Unexpected token < in JSON at position 0' ?
+            'Ruta incorrecta' :
             error.message
 
         const data = {
@@ -43,7 +55,7 @@ export default class ModalController {
 
     showSuccess() {
         const data = {
-            title: 'EXITO',
+            title: 'ÉXITO',
             message: 'El usuario se ha registrado con éxito'
         }
 
@@ -52,5 +64,18 @@ export default class ModalController {
         this.element.classList.add('active')
 
         this.attachEventCloseListener()
+    }
+
+    showLogged(username, next) {
+        const data = {
+            title: 'ÉXITO',
+            message: `Bienvenido, ${username}`
+        }
+
+        this.element.innerHTML = modalView(data, true)
+
+        this.element.classList.add('active')
+
+        this.attachEventCloseListener(next)
     }
 }
