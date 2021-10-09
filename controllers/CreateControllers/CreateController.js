@@ -1,4 +1,5 @@
 import DataServices from "../../services/DataServices.js"
+import PubSub from "../../services/PubSub.js"
 import { InputControllerAdName, InputControllerAdPrice } from "./CreateInputController.js"
 
 export default class CreateController {
@@ -7,8 +8,10 @@ export default class CreateController {
 
         this.inpAdName = new InputControllerAdName(this.element.querySelector('input[name="adname"]'))
         this.inpAdPrice = new InputControllerAdPrice(this.element.querySelector('input[name="adPrice"]'))
+        this.inpFile = document.querySelector('input[type="file"]')
+        this.radioButtons = document.querySelectorAll('input[type="radio"]')
 
-        this.inpList = [this.inpAdName, this.inpAdPrice]
+        this.inputsList = [this.inpAdName, this.inpAdPrice]
 
         this.attachEvents()
     }
@@ -16,14 +19,22 @@ export default class CreateController {
     attachEvents() {
         this.element.addEventListener('submit', async e => {
             e.preventDefault()
-            this.getRadioSelected()
             if (this.validFields()) {
                 // Crea el anuncio
                 const adData = this.getInputsData()
-                console.log(adData)
-                console.log('Se crea el anuncio')
-            } else {
-                console.error('No se ha podido crear el anuncio')
+                PubSub.publish(PubSub.events.SHOW_LOADER)
+                this.disableInputs()
+                try {
+                    await DataServices.createAd(adData)
+                    const msg = 'El anuncio se ha creado con éxito'
+                    PubSub.publish(PubSub.events.SHOW_SUCCESS, msg)
+                } catch (error) {
+                    PubSub.publish(PubSub.events.SHOW_ERROR, error)
+                } finally {
+                    PubSub.publish(PubSub.events.HIDE_LOADER)
+                    this.resetInputs()
+                    this.enableInputs()
+                }
             }
         })
     }
@@ -59,9 +70,10 @@ export default class CreateController {
     getInputsData() {
 
         const adName = this.inpAdName.getValue()
-        const adPhoto = document.querySelector('input[name="adphoto"]').value
+        const adPhoto = this.inpFile.value
         const adPrice = this.inpAdPrice.getValue()
         const adType = this.getRadioSelected()
+
         return {
             adName,
             adPhoto,
@@ -71,13 +83,30 @@ export default class CreateController {
     }
 
     getRadioSelected() {
-        const radioList = document.querySelectorAll('input[name="sellbuy"]')
-        const radioChecked = [...radioList].filter(radio => radio.checked === true)[0]
+        return [...this.radioButtons].filter(radio => radio.checked === true)[0].value
+    }
 
-        return radioChecked.value
+    resetInputs() {
+        this.resetInputStyles()
+        this.inputsList.forEach(input => input.resetValue())
+        this.inpFile.value = ''
     }
 
     resetInputStyles() {
-        this.inpList.forEach(input => input.resetStyles())
+        this.inputsList.forEach(input => input.resetStyles())
+    }
+
+    disableInputs() {
+        this.inputsList.forEach(input => input.disable())
+        this.inpFile.setAttribute('disabled', true)
+        this.radioButtons.forEach(radio => radio.setAttribute('disabled', true))
+        this.element.querySelector('button').setAttribute('disabled', true)
+    }
+
+    enableInputs() {
+        this.inputsList.forEach(input => input.enable())
+        this.inpFile.removeAttribute('disabled')
+        this.radioButtons.forEach(radio => radio.removeAttribute('disabled'))
+        this.element.querySelector('button').removeAttribute('disabled')
     }
 }
