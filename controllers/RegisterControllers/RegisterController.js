@@ -24,8 +24,9 @@ export default class RegisterController {
                 PubSub.publish(PubSub.events.SHOW_LOADER)
                 this.disableInputs()
                 try {
-                    await DataServices.registerUser(username, password)
-                    PubSub.publish(PubSub.events.SHOW_SUCCESS)
+                    await DataServices.registerUser({ username, password })
+                    const msg = 'El usuario se ha registrado con éxito'
+                    PubSub.publish(PubSub.events.SHOW_SUCCESS, msg)
                 } catch (error) {
                     PubSub.publish(PubSub.events.SHOW_ERROR, error)
                 } finally {

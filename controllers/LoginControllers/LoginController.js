@@ -28,7 +28,7 @@ export default class LoginController {
             PubSub.publish(PubSub.events.SHOW_LOADER)
             this.disableInputs()
             try {
-                await DataServices.loginUser(username, password)
+                await DataServices.loginUser({ username, password })
                 PubSub.publish(PubSub.events.SHOW_LOGGED, { username, next })
             } catch (error) {
                 PubSub.publish(PubSub.events.SHOW_ERROR, error)

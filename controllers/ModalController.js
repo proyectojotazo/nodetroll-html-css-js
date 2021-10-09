@@ -9,8 +9,8 @@ export default class ModalController {
             this.showError(error)
         })
 
-        PubSub.subscribe(PubSub.events.SHOW_SUCCESS, () => {
-            this.showSuccess()
+        PubSub.subscribe(PubSub.events.SHOW_SUCCESS, msg => {
+            this.showSuccess(msg)
         })
 
         PubSub.subscribe(PubSub.events.SHOW_LOGGED, params => {
@@ -53,10 +53,10 @@ export default class ModalController {
         this.attachEventCloseListener()
     }
 
-    showSuccess() {
+    showSuccess(msg) {
         const data = {
             title: 'ÉXITO',
-            message: 'El usuario se ha registrado con éxito'
+            message: msg
         }
 
         this.element.innerHTML = modalView(data, true)
