@@ -17,6 +17,7 @@ export default {
         }
 
         try {
+            debugger
             const response = await fetch(url, requestConfig)
             const data = await response.json()
             if (response.ok) {
@@ -42,7 +43,15 @@ export default {
 
     createAd: async function(adData) {
         const path = 'api/ads'
+        if (adData.adphoto !== '') {
+            const imgName = adData.adphoto
+            adData.adphoto = this.parseURLimage(imgName)
+        }
         return await this.post(path, adData)
+    },
+
+    parseURLimage(imgName) {
+        return `./public/images/${imgName}`
     },
 
     isAuthenticated() {

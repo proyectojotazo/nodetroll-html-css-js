@@ -1,6 +1,6 @@
 import DataServices from "../../services/DataServices.js"
 import PubSub from "../../services/PubSub.js"
-import { InputControllerAdName, InputControllerAdPrice } from "./CreateInputController.js"
+import { InputControllerAdFile, InputControllerAdName, InputControllerAdPrice } from "./CreateInputController.js"
 
 export default class CreateController {
     constructor(element) {
@@ -8,10 +8,10 @@ export default class CreateController {
 
         this.inpAdName = new InputControllerAdName(this.element.querySelector('input[name="adname"]'))
         this.inpAdPrice = new InputControllerAdPrice(this.element.querySelector('input[name="adPrice"]'))
-        this.inpFile = document.querySelector('input[type="file"]')
+        this.inpFile = new InputControllerAdFile(document.querySelector('input[type="file"]'))
         this.radioButtons = document.querySelectorAll('input[type="radio"]')
 
-        this.inputsList = [this.inpAdName, this.inpAdPrice]
+        this.inputsList = [this.inpAdName, this.inpFile, this.inpAdPrice]
 
         this.attachEvents()
     }
@@ -53,12 +53,16 @@ export default class CreateController {
     validFields() {
         const validAdName = this.inpAdName.isValid()
         const validAdPrice = this.inpAdPrice.isValid()
+        const validAdImage = this.inpFile.isValid()
 
-        if (this.emptyInputs()) return false
+        if (this.emptyInputs()) return false // Si nombre del articulo o precio está vacío siempre devolverá false
         else {
+            // Comprobaciones una vez esten los campos obligatorios no vacíos
             this.checkField(validAdName, this.inpAdName)
+            this.checkField(validAdImage, this.inpFile)
             this.checkField(validAdPrice, this.inpAdPrice)
-            return (validAdName && validAdPrice)
+
+            return (validAdName && validAdPrice && validAdImage)
         }
     }
 
@@ -69,27 +73,25 @@ export default class CreateController {
 
     getInputsData() {
 
-        const adName = this.inpAdName.getValue()
-        const adPhoto = this.inpFile.value
-        const adPrice = this.inpAdPrice.getValue()
-        const adType = this.getRadioSelected()
+        const data = {}
 
-        return {
-            adName,
-            adPhoto,
-            adPrice,
-            adType
+        const myForm = new FormData(this.element)
+
+        for (const element of myForm.entries()) {
+            if (element[0] === 'adphoto') {
+                data[element[0]] = element[1].name
+            } else {
+                data[element[0]] = element[1]
+            }
+
         }
-    }
 
-    getRadioSelected() {
-        return [...this.radioButtons].filter(radio => radio.checked === true)[0].value
+        return data
     }
 
     resetInputs() {
         this.resetInputStyles()
         this.inputsList.forEach(input => input.resetValue())
-        this.inpFile.value = ''
     }
 
     resetInputStyles() {
@@ -98,14 +100,12 @@ export default class CreateController {
 
     disableInputs() {
         this.inputsList.forEach(input => input.disable())
-        this.inpFile.setAttribute('disabled', true)
         this.radioButtons.forEach(radio => radio.setAttribute('disabled', true))
         this.element.querySelector('button').setAttribute('disabled', true)
     }
 
     enableInputs() {
         this.inputsList.forEach(input => input.enable())
-        this.inpFile.removeAttribute('disabled')
         this.radioButtons.forEach(radio => radio.removeAttribute('disabled'))
         this.element.querySelector('button').removeAttribute('disabled')
     }

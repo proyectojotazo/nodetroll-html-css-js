@@ -51,3 +51,41 @@ export class InputControllerAdPrice extends InputController {
 
     }
 }
+
+export class InputControllerAdFile extends InputController {
+    constructor(element) {
+        super(element)
+    }
+
+    isValid() {
+
+        // Si está vacío devolvemos true, pues es un campo opcional
+
+        if (this.getValue() !== '') {
+            // En caso que se le introduzca un archivo comprobaremos la extensión que sea valida
+
+            const validExt = ['jpg', 'jpeg', 'png', 'gif']
+            const imgName = this.getValue()
+            const splittedName = imgName.split('.')
+            const extension = splittedName[splittedName.length - 1]
+
+            return validExt.some(ext => ext === extension)
+        }
+
+        return true
+
+    }
+
+    showError() {
+        super.showError()
+        this.resetError()
+
+        const errMsg = 'El archivo debe estar en uno de los siguientes formatos: .jpg, .jpeg, .png, .gif'
+
+        this.addClass('border-danger')
+
+        this.errorDiv.setErrorMessage(errMsg)
+        this.errorDiv.addClass('text-danger')
+
+    }
+}

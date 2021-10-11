@@ -24,12 +24,13 @@ export default class ModalController {
         btnClose.addEventListener('click', () => {
             this.element.classList.remove('active')
             if (next !== '') {
+                // TODO: Ponerlo en un lugar mas adecuado  
                 window.location.href = next
             }
         })
     }
 
-    showError(error) {
+    showError(error, next = '') {
         const message =
             error.message === 'Username is taken' ?
             'Usuario ya registrado' :
@@ -39,7 +40,12 @@ export default class ModalController {
             'Usuario y/o contraseña incorrectos' :
             error.message === 'Unexpected token < in JSON at position 0' ?
             'Ruta incorrecta' :
+            error.message === 'Wrong access token' ?
+            'Se necesita estar registrado' :
             error.message
+
+        // TODO: Ponerlo en un lugar mas adecuado    
+        if (message === 'Se necesita estar registrado') next = '?next=login.html'
 
         const data = {
             title: 'ERROR',
@@ -50,7 +56,7 @@ export default class ModalController {
 
         this.element.classList.add('active')
 
-        this.attachEventCloseListener()
+        this.attachEventCloseListener(next)
     }
 
     showSuccess(msg) {
