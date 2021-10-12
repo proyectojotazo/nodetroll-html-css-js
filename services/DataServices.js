@@ -1,6 +1,27 @@
 const URL = 'http://localhost:8000/'
 
 export default {
+    getAds: async function() {
+        const path = 'api/ads'
+        const url = `${URL}${path}`
+        debugger
+        try {
+            const response = await fetch(url)
+            const data = await response.json()
+            if (response.ok) return data
+            else {
+                if (Object.entries(data).length === 0) {
+                    //Error que se genera al no tener en el db.json la propiedad 'ads'
+                    data.message = 'Error en el servidor'
+                }
+                throw new Error(data.message)
+            }
+        } catch (error) {
+            throw error
+        }
+
+
+    },
     post: async function(path, body) {
         const url = `${URL}${path}`
         const requestConfig = {
@@ -17,7 +38,6 @@ export default {
         }
 
         try {
-            debugger
             const response = await fetch(url, requestConfig)
             const data = await response.json()
             if (response.ok) {
@@ -56,5 +76,5 @@ export default {
 
     isAuthenticated() {
         return localStorage.getItem('token') !== null
-    },
+    }
 }

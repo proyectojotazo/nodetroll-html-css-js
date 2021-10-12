@@ -1,0 +1,15 @@
+/*Modificaciones para navbar de bootstrap*/
+
+.form-control {
+    display: initial;
+    width: auto;
+}
+
+.btn {
+    vertical-align: inherit;
+}
+
+img {
+    object-fit: cover;
+    max-height: 187px;
+}
