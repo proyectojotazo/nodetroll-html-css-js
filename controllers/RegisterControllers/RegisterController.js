@@ -37,8 +37,31 @@ export default class RegisterController {
             }
         })
 
+        this.goIndexEventButton()
         this.toogleActiveButton()
     }
+
+    goIndexEventButton() {
+
+        this.element.querySelector('#back').addEventListener('click', e => {
+            e.preventDefault()
+            window.location.href = '/'
+        })
+    }
+
+    toogleActiveButton() {
+        this.inputsList.forEach(inp => {
+            inp.element.addEventListener('input', () => {
+                const activateButton = this.inputsList.every(input => input.getValue() !== '')
+                if (activateButton) {
+                    this.element.querySelector('button').removeAttribute('disabled')
+                } else {
+                    this.element.querySelector('button').setAttribute('disabled', true)
+                }
+            })
+        })
+    }
+
 
     validFields() {
 
@@ -94,16 +117,4 @@ export default class RegisterController {
         this.inputsList.forEach(input => input.enable())
     }
 
-    toogleActiveButton() {
-        this.inputsList.forEach(inp => {
-            inp.element.addEventListener('input', () => {
-                const activateButton = this.inputsList.every(input => input.getValue() !== '')
-                if (activateButton) {
-                    this.element.querySelector('button').removeAttribute('disabled')
-                } else {
-                    this.element.querySelector('button').setAttribute('disabled', true)
-                }
-            })
-        })
-    }
 }
