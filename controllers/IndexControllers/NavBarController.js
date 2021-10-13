@@ -1,5 +1,5 @@
 import { navBarView } from "../../public/js/views.js"
-import DataServices from "../../services/DataServices.js"
+import RequestServices from "../../services/RequestServices.js"
 
 export default class NavBarController {
     constructor(element) {
@@ -9,7 +9,7 @@ export default class NavBarController {
     }
 
     showNav() {
-        const isAuth = DataServices.isAuthenticated()
+        const isAuth = RequestServices.isAuthenticated()
         this.element.innerHTML = navBarView(isAuth)
     }
 

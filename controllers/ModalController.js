@@ -30,7 +30,7 @@ export default class ModalController {
         })
     }
 
-    showError(error, next = '') {
+    showError(error) {
         const message =
             error.message === 'Username is taken' ?
             'Usuario ya registrado' :
@@ -44,9 +44,6 @@ export default class ModalController {
             'Se necesita estar registrado' :
             error.message
 
-        // TODO: Ponerlo en un lugar mas adecuado    
-        if (message === 'Se necesita estar registrado') next = '?next=login.html'
-
         const data = {
             title: 'ERROR',
             message
@@ -56,7 +53,7 @@ export default class ModalController {
 
         this.element.classList.add('active')
 
-        this.attachEventCloseListener(next)
+        this.attachEventCloseListener()
     }
 
     showSuccess(msg) {

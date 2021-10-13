@@ -1,5 +1,5 @@
 import { adCardView } from "../../public/js/views.js"
-import DataServices from "../../services/DataServices.js"
+import AdsServices from "../../services/AdsServices.js"
 import PubSub from "../../services/PubSub.js"
 
 export default class IndexController {
@@ -11,7 +11,8 @@ export default class IndexController {
     async showAds() {
         PubSub.publish(PubSub.events.SHOW_LOADER)
         try {
-            const ads = await DataServices.getAds()
+            const ads = await AdsServices.getAds()
+            console.log(ads)
             if (ads.length !== 0) {
                 // Si hay anuncios pintarlos
                 ads.forEach(ad => {

@@ -1,5 +1,5 @@
-import DataServices from "../../services/DataServices.js"
 import PubSub from "../../services/PubSub.js"
+import UsersServices from "../../services/UsersServices.js"
 import LoginInputController from "./LoginInputController.js"
 
 export default class LoginController {
@@ -38,7 +38,7 @@ export default class LoginController {
             PubSub.publish(PubSub.events.SHOW_LOADER)
             this.disableInputs()
             try {
-                await DataServices.loginUser({ username, password })
+                await UsersServices.loginUser({ username, password })
                 PubSub.publish(PubSub.events.SHOW_LOGGED, { username, next })
             } catch (error) {
                 PubSub.publish(PubSub.events.SHOW_ERROR, error)

@@ -1,11 +1,11 @@
 import CreateController from "../../controllers/CreateControllers/CreateController.js"
 import LoaderController from "../../controllers/LoaderController.js"
 import ModalController from "../../controllers/ModalController.js"
-import DataServices from "../../services/DataServices.js"
+import RequestServices from "../../services/RequestServices.js"
 
 window.addEventListener('DOMContentLoaded', () => {
 
-    if (!DataServices.isAuthenticated()) {
+    if (!RequestServices.isAuthenticated()) {
         window.location.href = '/login.html?next=/createad.html'
     }
 

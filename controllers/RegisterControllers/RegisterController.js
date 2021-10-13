@@ -1,6 +1,6 @@
 import { InputControllerUserName, InputControllerPassword } from "./RegisterInputController.js"
-import DataServices from "../../services/DataServices.js"
 import PubSub from "../../services/PubSub.js"
+import UsersServices from "../../services/UsersServices.js"
 
 export default class RegisterController {
     constructor(element) {
@@ -24,7 +24,7 @@ export default class RegisterController {
                 PubSub.publish(PubSub.events.SHOW_LOADER)
                 this.disableInputs()
                 try {
-                    await DataServices.registerUser({ username, password })
+                    await UsersServices.registerUser({ username, password })
                     const msg = 'El usuario se ha registrado con éxito'
                     PubSub.publish(PubSub.events.SHOW_SUCCESS, msg)
                 } catch (error) {
