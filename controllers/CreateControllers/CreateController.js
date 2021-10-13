@@ -37,6 +37,16 @@ export default class CreateController {
                 }
             }
         })
+
+        this.goIndexEventButton()
+    }
+
+    goIndexEventButton() {
+
+        this.element.querySelector('#back').addEventListener('click', e => {
+            e.preventDefault()
+            window.location.href = '/'
+        })
     }
 
     emptyInputs() {
