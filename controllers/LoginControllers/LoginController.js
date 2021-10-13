@@ -19,6 +19,16 @@ export default class LoginController {
             e.preventDefault()
             this.loginUser()
         })
+
+        this.goIndexEventButton()
+    }
+
+    goIndexEventButton() {
+
+        this.element.querySelector('#back').addEventListener('click', e => {
+            e.preventDefault()
+            window.location.href = '/'
+        })
     }
 
     async loginUser() {
