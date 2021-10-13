@@ -20,12 +20,38 @@ export const adCardView = (ad) => {
         'https://via.placeholder.com/280x187' :
         ad.adphoto
 
+    return `<a id="link-detail" href="detail.html?id=${ad.id}">
+    <img class="card-img-top" src="${img}" alt="${ad.adname}">
+    <div class="card-body d-flex flex-column justify-content-evenly">
+        <h5 class="card-title">${ad.adname}</h5>
+        <p class="card-text">Precio: ${ad.adPrice}€</p>
+        <p class="card-text">${sellBuy}</p>
+    </div>
+    </a>
+    `
+}
+
+export const adCardViewDetail = (ad) => {
+    const sellBuy = ad.sellbuy === 'sell' ?
+        'En venta' :
+        'En compra'
+
+    const img = ad.adphoto === '' ?
+        'https://via.placeholder.com/280x187' :
+        ad.adphoto
+
+    const deleteButton = ad.canBeDeleted ?
+        `<button class="delete btn btn-danger">Borrar</button>` :
+        ''
+
     return `<img class="card-img-top" src="${img}" alt="${ad.adname}">
     <div class="card-body d-flex flex-column justify-content-evenly">
         <h5 class="card-title">${ad.adname}</h5>
         <p class="card-text">Precio: ${ad.adPrice}€</p>
         <p class="card-text">${sellBuy}</p>
-    </div>`
+        ${deleteButton}
+    </div>
+    `
 }
 
 export const navBarView = (isAuth) => {
