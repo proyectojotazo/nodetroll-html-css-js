@@ -1,4 +1,4 @@
-import DataServices from "../../services/DataServices.js"
+import AdsServices from "../../services/AdsServices.js"
 import PubSub from "../../services/PubSub.js"
 import { InputControllerAdFile, InputControllerAdName, InputControllerAdPrice } from "./CreateInputController.js"
 
@@ -25,7 +25,7 @@ export default class CreateController {
                 PubSub.publish(PubSub.events.SHOW_LOADER)
                 this.disableInputs()
                 try {
-                    await DataServices.createAd(adData)
+                    await AdsServices.createAd(adData)
                     const msg = 'El anuncio se ha creado con éxito'
                     PubSub.publish(PubSub.events.SHOW_SUCCESS, msg)
                 } catch (error) {
