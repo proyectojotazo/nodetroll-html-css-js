@@ -13,3 +13,11 @@ img {
     object-fit: cover;
     max-height: 187px;
 }
+
+
+/* wrapper de la card */
+
+#link-detail {
+    text-decoration: none;
+    color: initial;
+}
