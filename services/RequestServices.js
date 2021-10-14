@@ -53,7 +53,6 @@ export default {
         const requestConfig = this.getRequestConfig(method, body)
 
         try {
-            debugger
             const response = await fetch(url, requestConfig)
             const data = await response.json()
 

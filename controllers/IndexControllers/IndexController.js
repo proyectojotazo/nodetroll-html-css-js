@@ -12,7 +12,6 @@ export default class IndexController {
         PubSub.publish(PubSub.events.SHOW_LOADER)
         try {
             const ads = await AdsServices.getAds()
-            console.log(ads)
             if (ads.length !== 0) {
                 // Si hay anuncios pintarlos
                 ads.forEach(ad => {
