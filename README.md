@@ -79,7 +79,7 @@
 
 ---
 
-## Listado de Páginas
+## Previsualización del listado de Páginas
 
 #### Index
 - Sin usuario registrado y sin anuncios
@@ -94,6 +94,20 @@
 - Usuario registrado, con anuncios
 ![filled-logged](public/screen-captures/index/index-filled-logged.png)
 ---
+
+#### Detalle
+- Usuario no registrado
+![not-logged](public/screen-captures/detail/detail-not-logged.png)
+
+- Usuario registrado y propietario del anuncio
+![logged-owner](public/screen-captures/detail/detail-ad-owner-logged.png)
+
+- Anuncio no encontrado (MODAL)
+![not-found-modal](public/screen-captures/detail/detail-not-found.png)
+
+- Anuncio no encontrado (VISTA)
+![not-found-view](public/screen-captures/detail/detail-not-found2.png)
+
 
 #### Registro
 - Campos correctos
@@ -118,3 +132,5 @@
 
 - Usuario/Contraseña incorrecto
 ![wrong-username-pass](public/screen-captures/login/login-wrong-username-password.png)
+---
+
