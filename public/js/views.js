@@ -41,7 +41,7 @@ export const adCardViewDetail = (ad) => {
         ad.adphoto
 
     const deleteButton = ad.canBeDeleted ?
-        `<button class="delete btn btn-danger">Borrar</button>` :
+        `<button class="delete btn btn-outline-dark">Borrar</button>` :
         ''
 
     return `<img class="card-img-top" src="${img}" alt="${ad.adname}">

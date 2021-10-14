@@ -14,8 +14,9 @@ export default class DetailController {
         try {
             const ad = await AdsServices.getAd(this.adId)
             const adCard = this.createCard(ad)
+            const btnBack = this.createBackButton()
 
-            this.element.append(adCard)
+            this.element.append(adCard, btnBack)
 
             this.deleteButtonEvent()
         } catch (error) {
@@ -28,10 +29,10 @@ export default class DetailController {
 
     createCard(ad) {
         const divCard = document.createElement('div')
-        const btnBack = this.createBackButton()
+            // const btnBack = this.createBackButton()
         divCard.classList.add('card', 'w-25', 'm-2', 'mx-auto')
         divCard.innerHTML = adCardViewDetail(ad)
-        divCard.appendChild(btnBack)
+            // divCard.appendChild(btnBack)
 
         return divCard
     }
@@ -92,7 +93,7 @@ export default class DetailController {
 
     createBackButton() {
         const btnBack = document.createElement('button')
-        btnBack.classList.add('btn', 'btn-danger', 'my-2', 'w-75', 'mx-auto')
+        btnBack.classList.add('btn', 'd-block', 'btn-danger', 'my-2', 'mx-auto')
         btnBack.innerText = 'Volver'
 
         btnBack.addEventListener('click', () => {
