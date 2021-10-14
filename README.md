@@ -82,4 +82,36 @@
 ## Listado de Páginas
 
 #### Index
-![Página indice sin usuario registrado y sin anuncios](public/screen-captures/index-empty-no-logged.png)
+- Sin usuario registrado y sin anuncios
+![empty-no-logged](public/screen-captures/index/index-empty-no-logged.png)
+
+- Usuario registrado, sin anuncios
+![empty-logged](public/screen-captures/index/index-empty-logged.png)
+
+- Sin usuario registrado, con anuncios
+![filled-no-logged](public/screen-captures/index/index-filled-no-logged.png)
+
+- Usuario registrado, con anuncios
+![filled-logged](public/screen-captures/index/index-filled-logged.png)
+---
+
+#### Registro
+- Campos correctos
+![correct-fields](public/screen-captures/register/register-user-registering.png)
+
+- Registro con éxito
+![register-successfully](public/screen-captures/register/register-successfully.png)
+
+- Campos incorrectos
+![wrong-fields](public/screen-captures/register/register-user-wrong-parameters.png)
+
+- Contraseñas no coinciden
+![password-no-match](public/screen-captures/register/register-user-wrong-password.png)
+
+#### Inicio Sesión
+- Inicio sesión con éxito
+![login-successfully](public/screen-captures/login/login-successfully.png)
+
+- Campos vacíos
+![empty-fields](public/screen-captures/login/login-empty-fields.png)
+
