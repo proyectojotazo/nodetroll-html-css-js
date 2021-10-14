@@ -50,7 +50,14 @@ export const adCardViewDetail = (ad) => {
         <p class="card-text">Precio: ${ad.adPrice}€</p>
         <p class="card-text">${sellBuy}</p>
         ${deleteButton}
+        <button class="btn btn-danger my-2 position-absolute back-btn" id="btn-back">Volver</button>
     </div>
+    `
+}
+
+export const adCardViewDetailNotFound = () => {
+    return `<h3 class="text-center mt-2">Anuncio No Encontrado</h3>
+    <button class="btn btn-danger my-2 w-50 mx-auto" id="btn-back">Volver</button>
     `
 }
 

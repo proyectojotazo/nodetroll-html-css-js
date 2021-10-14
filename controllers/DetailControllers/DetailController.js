@@ -1,4 +1,4 @@
-import { adCardViewDetail } from "../../public/js/views.js"
+import { adCardViewDetail, adCardViewDetailNotFound } from "../../public/js/views.js"
 import AdsServices from "../../services/AdsServices.js"
 import PubSub from "../../services/PubSub.js"
 
@@ -14,27 +14,45 @@ export default class DetailController {
         try {
             const ad = await AdsServices.getAd(this.adId)
             const adCard = this.createCard(ad)
-            const btnBack = this.createBackButton()
 
-            this.element.append(adCard, btnBack)
+            this.element.append(adCard)
 
-            this.deleteButtonEvent()
         } catch (error) {
             PubSub.publish(PubSub.events.SHOW_ERROR, error)
             this.showAdNotFound()
         } finally {
             PubSub.publish(PubSub.events.HIDE_LOADER)
+            this.attachButtonEvents()
         }
     }
 
     createCard(ad) {
         const divCard = document.createElement('div')
-            // const btnBack = this.createBackButton()
+
         divCard.classList.add('card', 'w-25', 'm-2', 'mx-auto')
         divCard.innerHTML = adCardViewDetail(ad)
-            // divCard.appendChild(btnBack)
 
         return divCard
+    }
+
+    showAdNotFound() {
+        const wrapperNotFound = this.createWrapperNotFoundElements()
+
+        this.element.append(wrapperNotFound)
+    }
+
+    createWrapperNotFoundElements() {
+        const wrapper = document.createElement('div')
+        wrapper.classList.add('d-flex', 'flex-column', 'w-50', 'mx-auto')
+
+        wrapper.innerHTML = adCardViewDetailNotFound()
+
+        return wrapper
+    }
+
+    attachButtonEvents() {
+        this.deleteButtonEvent()
+        this.eventBackButton()
     }
 
     deleteButtonEvent() {
@@ -63,44 +81,13 @@ export default class DetailController {
 
     }
 
-    showAdNotFound() {
-        const wrapperNotFound = this.createWrapperNotFoundElements()
-
-        this.element.appendChild(wrapperNotFound)
-    }
-
-    createWrapperNotFoundElements() {
-        const wrapper = document.createElement('div')
-        wrapper.classList.add('d-flex', 'flex-column', 'w-50', 'mx-auto')
-
-        const h3 = this.createNotFoundMsgNode()
-        const btn = this.createBackButton()
-
-        wrapper.append(h3, btn)
-
-        return wrapper
-    }
-
-    createNotFoundMsgNode() {
-        const msg = 'Anuncio no encontrado'
-        const node = document.createElement('h3')
-
-        node.classList.add('text-center', 'mt-2')
-        node.innerText = msg
-
-        return node
-    }
-
-    createBackButton() {
-        const btnBack = document.createElement('button')
-        btnBack.classList.add('btn', 'd-block', 'btn-danger', 'my-2', 'mx-auto')
-        btnBack.innerText = 'Volver'
+    eventBackButton() {
+        const btnBack = document.querySelector('#btn-back')
 
         btnBack.addEventListener('click', () => {
             window.location.href = '/'
         })
 
-        return btnBack
     }
 
 }
