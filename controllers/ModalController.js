@@ -62,11 +62,13 @@ export default class ModalController {
             message: msg
         }
 
+        const next = '/' // La redirección de success siempre será al índice
+
         this.element.innerHTML = modalView(data, true)
 
         this.element.classList.add('active')
 
-        this.attachEventCloseListener()
+        this.attachEventCloseListener(next)
     }
 
     showLogged(username, next) {

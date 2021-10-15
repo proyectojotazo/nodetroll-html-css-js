@@ -1,5 +1,5 @@
 import LoaderController from "../../controllers/LoaderController.js"
-import LoginController from "../../controllers/LoginControllers/LoginController.js"
+import LoginController from "../../controllers/LoginController.js"
 import ModalController from "../../controllers/ModalController.js"
 
 

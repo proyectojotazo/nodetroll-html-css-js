@@ -1,4 +1,4 @@
-import DetailController from "../../controllers/DetailControllers/DetailController.js"
+import DetailController from "../../controllers/DetailController.js"
 import ModalController from '../../controllers/ModalController.js'
 import LoaderController from '../../controllers/LoaderController.js'
 

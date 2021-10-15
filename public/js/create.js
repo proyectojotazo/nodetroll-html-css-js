@@ -1,4 +1,4 @@
-import CreateController from "../../controllers/CreateControllers/CreateController.js"
+import CreateController from "../../controllers/CreateController.js"
 import LoaderController from "../../controllers/LoaderController.js"
 import ModalController from "../../controllers/ModalController.js"
 import RequestServices from "../../services/RequestServices.js"

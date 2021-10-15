@@ -1,6 +1,6 @@
-import { adCardViewDetail, adCardViewDetailNotFound } from "../../public/js/views.js"
-import AdsServices from "../../services/AdsServices.js"
-import PubSub from "../../services/PubSub.js"
+import { adCardViewDetail, adCardViewDetailNotFound } from "../public/js/views.js"
+import AdsServices from "../services/AdsServices.js"
+import PubSub from "../services/PubSub.js"
 
 export default class DetailController {
     constructor(element, adId) {
@@ -67,8 +67,6 @@ export default class DetailController {
                     try {
                         await AdsServices.deleteAd(this.adId)
                         PubSub.publish(PubSub.events.SHOW_SUCCESS, 'El anuncio se ha borrado correctamente!')
-                            // TODO: Mirar que la redirección no sea tan directa
-                        window.location.href = '/'
                     } catch (error) {
                         PubSub.publish(PubSub.events.SHOW_ERROR, error)
                     } finally {
