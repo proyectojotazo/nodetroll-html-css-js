@@ -3,7 +3,7 @@ export default {
     getAll: async function() {
 
         const url = this.getUrl('api/ads')
-        const requestConfig = this.getRequestConfig('GET', null)
+        const requestConfig = this.getRequestConfig('GET')
         try {
             const response = await fetch(url, requestConfig)
             const data = await response.json()
@@ -29,7 +29,7 @@ export default {
         if (id === null) throw new Error('Falta especificar una id')
 
         const url = this.getUrl(`api/ads/${id}`)
-        const requestConfig = this.getRequestConfig('GET', null)
+        const requestConfig = this.getRequestConfig('GET')
         try {
             const response = await fetch(url, requestConfig)
             const data = await response.json()
@@ -81,7 +81,7 @@ export default {
         return `http://localhost:8000/${path}`
     },
 
-    getRequestConfig(method, body) {
+    getRequestConfig(method, body = {}) {
         const requestConfig = {
             method: method,
             headers: {

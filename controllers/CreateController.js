@@ -81,6 +81,13 @@ export default class CreateController {
 
     getInputsData() {
 
+        const parseURLimage = (data) => {
+            if (data.adphoto !== '') {
+                const { adphoto: img } = data
+                data.adphoto = `./public/images/${img}`
+            }
+        }
+
         const data = {}
 
         const myForm = new FormData(this.element)
@@ -93,6 +100,8 @@ export default class CreateController {
             }
 
         }
+
+        parseURLimage(data)
 
         return data
     }
