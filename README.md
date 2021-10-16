@@ -71,13 +71,21 @@
     
 - Para ejecutar correctamente la práctica debemos, primeramente, clonar éste repositorio y seguidamente clonar también [sparrest.js](https://github.com/kasappeal/sparrest.js) (no clonar ambos repositorios en la misma carpeta). Una vez clonados ambos repositorios, pasaremos a configurar el backend.
 
-- Accedemos al backend de **sparrest** y ejecutamos `npm i` para instalar las dependencias. Una vez instalamos las dependencias, accedemos a éste repositorio y copiamos el archivo **db.json** y lo introducimos en el directorio raíz de **sparrest**. 
+- Accedemos al backend de **sparrest** y ejecutamos `npm i` para instalar las dependencias. Una vez instalamos las dependencias, accedemos a éste repositorio, copiamos el archivo **db.json** y lo introducimos en el directorio raíz de **sparrest**. 
 
 - Pasamos a iniciar nuestro backend haciendo `npm start`, el cual nos creará en servidor en el puerto **8000**
 
 - Volvemos a éste repositorio y podemos ejecutar cualquiera de las extensiones antes mencionadas sobre las páginas existentes.
 
+- El usuario que viene por defecto creado es éste:
+
+    > Usuario: Jotazo87
+
+    > Contraseña: 1234abcd
+
 ---
+
+
 
 ## Previsualización del listado de Páginas
 
@@ -127,10 +135,19 @@
 - Inicio sesión con éxito
 ![login-successfully](public/screen-captures/login/login-successfully.png)
 
-- Campos vacíos
-![empty-fields](public/screen-captures/login/login-empty-fields.png)
-
 - Usuario/Contraseña incorrecto
 ![wrong-username-pass](public/screen-captures/login/login-wrong-username-password.png)
 ---
 
+#### Creación Anuncio
+- Vista Principal
+![view](public/screen-captures/create/view.png)
+
+- Creación con éxito
+![view](public/screen-captures/create/createad-successfully.png)
+
+- Campos erróneos
+![view](public/screen-captures/create/createad-wrong-fields.png)
+
+- Error en creación
+![view](public/screen-captures/create/createad-errormsg.png)
