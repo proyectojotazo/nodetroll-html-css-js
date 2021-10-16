@@ -1,0 +1,107 @@
+{
+    "users": [{
+        "username": "Jotazo87",
+        "password": "$2b$10$RaGZexOjq3xSWXXVAwsv8uE69yXz1J5q5ZRxAhAYo.wYTzQZlyu3O",
+        "id": 1
+    }],
+    "ads": [{
+            "adname": "Complementos",
+            "adphoto": "./public/images/complementos.jpg",
+            "adPrice": "87.95",
+            "sellbuy": "sell",
+            "userId": 1,
+            "updatedAt": "2021-10-14T05:56:02.617Z",
+            "id": 1
+        },
+        {
+            "adname": "Guitarra",
+            "adphoto": "./public/images/guitarra.jpg",
+            "adPrice": "129.99",
+            "sellbuy": "sell",
+            "userId": 1,
+            "updatedAt": "2021-10-14T05:56:24.011Z",
+            "id": 2
+        },
+        {
+            "adname": "Mando XBOX360",
+            "adphoto": "./public/images/mandoXBOX360.jpg",
+            "adPrice": "39.90",
+            "sellbuy": "buy",
+            "userId": 1,
+            "updatedAt": "2021-10-14T05:56:42.230Z",
+            "id": 3
+        },
+        {
+            "adname": "Ipad",
+            "adphoto": "./public/images/ipad.jpg",
+            "adPrice": "599.90",
+            "sellbuy": "sell",
+            "userId": 1,
+            "updatedAt": "2021-10-14T05:57:00.437Z",
+            "id": 4
+        },
+        {
+            "adname": "Cama",
+            "adphoto": "./public/images/cama.jpg",
+            "adPrice": "125.89",
+            "sellbuy": "sell",
+            "userId": 1,
+            "updatedAt": "2021-10-16T08:14:46.768Z",
+            "id": 5
+        },
+        {
+            "adname": "Camiseta Blanca Manga Corta",
+            "adphoto": "./public/images/camiseta.jpg",
+            "adPrice": "12.35",
+            "sellbuy": "sell",
+            "userId": 1,
+            "updatedAt": "2021-10-16T08:15:10.163Z",
+            "id": 6
+        },
+        {
+            "adname": "Game Gear",
+            "adphoto": "./public/images/game-gear.jpg",
+            "adPrice": "129",
+            "sellbuy": "buy",
+            "userId": 1,
+            "updatedAt": "2021-10-16T08:15:40.274Z",
+            "id": 7
+        },
+        {
+            "adname": "Kettlebell",
+            "adphoto": "./public/images/kettlebell.jpg",
+            "adPrice": "39.90",
+            "sellbuy": "buy",
+            "userId": 1,
+            "updatedAt": "2021-10-16T08:16:05.600Z",
+            "id": 8
+        },
+        {
+            "adname": "Nokia",
+            "adphoto": "./public/images/nokia.png",
+            "adPrice": "1",
+            "sellbuy": "sell",
+            "userId": 1,
+            "updatedAt": "2021-10-16T08:16:29.213Z",
+            "id": 9
+        },
+        {
+            "adname": "Pala de Padel",
+            "adphoto": "./public/images/pala-padel.jpg",
+            "adPrice": "24.99",
+            "sellbuy": "sell",
+            "userId": 1,
+            "updatedAt": "2021-10-16T08:16:54.905Z",
+            "id": 10
+        },
+        {
+            "adname": "Piano",
+            "adphoto": "./public/images/piano.jpg",
+            "adPrice": "1200.59",
+            "sellbuy": "sell",
+            "userId": 1,
+            "updatedAt": "2021-10-16T08:17:19.671Z",
+            "id": 11
+        }
+    ]
+}
