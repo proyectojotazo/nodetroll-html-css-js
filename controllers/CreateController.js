@@ -40,17 +40,34 @@ export default class CreateController {
                 PubSub.publish(PubSub.events.SHOW_SUCCESS, 'El anuncio se ha creado con éxito')
             } catch (error) {
                 PubSub.publish(PubSub.events.SHOW_ERROR, error)
+                    /**
+                     * Solo volvemos a habilitar los inputs en caso de que se produzca error
+                     * pues en caso de exito volverá al inicio. Se contempla la conexión lenta y 
+                     * se puede dar el caso de que se cree de nuevo el anuncio. 
+                     */
+                this.enableInputs()
             } finally {
                 PubSub.publish(PubSub.events.HIDE_LOADER)
                 this.resetInputs()
-                this.enableInputs()
+
             }
         }
     }
 
     goIndexEventButton() {
 
-        this.element.querySelector('#back').addEventListener('click', () => {
+        this.element.querySelector('#back').addEventListener('click', e => {
+            /**
+             * Al ser un botón que se encuentra dentro del form, aunque no sea 'type="submit"'
+             * su comportamiento por defecto es el 'submit'. Prevenimos este problema.
+             */
+            e.preventDefault()
+
+            /**
+             * Si clickamos en volver, deshabilitamos todos los inputs. Con una red
+             * 3G lenta, no permitimos que una vez clickado en volver, se cree el anuncio
+             */
+            this.disableInputs()
             window.location.href = '/'
         })
     }
@@ -119,6 +136,7 @@ export default class CreateController {
         this.inputsList.forEach(input => input.disable())
         this.radioButtons.forEach(radio => radio.setAttribute('disabled', true))
         this.element.querySelector('button').setAttribute('disabled', true)
+        this.element.querySelector('#back').setAttribute('disabled', true)
     }
 
     enableInputs() {

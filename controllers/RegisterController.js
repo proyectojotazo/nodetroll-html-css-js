@@ -40,9 +40,10 @@ export default class RegisterController {
                 PubSub.publish(PubSub.events.SHOW_SUCCESS, 'El usuario se ha registrado con éxito')
             } catch (error) {
                 PubSub.publish(PubSub.events.SHOW_ERROR, error)
+                this.enableInputs()
             } finally {
                 PubSub.publish(PubSub.events.HIDE_LOADER)
-                this.enableInputs()
+
                 this.resetInputs()
             }
         }
@@ -114,10 +115,12 @@ export default class RegisterController {
     disableInputs() {
         this.inputsList.forEach(input => input.disable())
         this.element.querySelector('button').setAttribute('disabled', true)
+        this.element.querySelector('#back').setAttribute('disabled', true)
     }
 
     enableInputs() {
         this.inputsList.forEach(input => input.enable())
+        this.element.querySelector('#back').removeAttribute('disabled')
     }
 
 }

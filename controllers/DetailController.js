@@ -50,6 +50,14 @@ export default class DetailController {
         return wrapper
     }
 
+    disableInputs() {
+        const deletebtn = this.element.querySelector('.delete')
+        const backBtn = this.element.querySelector('#btn-back')
+
+        deletebtn.setAttribute('disabled', true)
+        backBtn.setAttribute('disabled', true)
+    }
+
     attachButtonEvents() {
         this.deleteButtonEvent()
         this.eventBackButton()
@@ -64,6 +72,7 @@ export default class DetailController {
                 const deleteAd = confirm('Está seguro que desea borrar este anuncio?')
                 if (deleteAd) {
                     PubSub.publish(PubSub.events.SHOW_LOADER)
+                    this.disableInputs()
                     try {
                         await AdsServices.deleteAd(this.adId)
                         PubSub.publish(PubSub.events.SHOW_SUCCESS, 'El anuncio se ha borrado correctamente!')
