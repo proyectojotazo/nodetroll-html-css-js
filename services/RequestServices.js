@@ -49,6 +49,24 @@ export default {
         }
     },
 
+    getSearch: async function(adName) {
+
+        const url = this.getUrl(`api/ads?adname_like=${adName}`)
+        const requestConfig = this.getRequestConfig('GET')
+        try {
+            const response = await fetch(url, requestConfig)
+            const data = await response.json()
+
+            if (response.ok) {
+                return data
+            } else {
+                throw new Error(data.message)
+            }
+        } catch (error) {
+            throw error
+        }
+    },
+
     request: async function(url, method, body = {}) {
         const requestConfig = this.getRequestConfig(method, body)
 

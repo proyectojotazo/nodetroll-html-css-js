@@ -1,10 +1,12 @@
 import { navBarView } from "../../public/js/views.js"
 import RequestServices from "../../services/RequestServices.js"
+import SearchController from "./SearchController.js"
 
 export default class NavBarController {
     constructor(element) {
         this.element = element
         this.showNav()
+        new SearchController(this.element.querySelector('input[type="search"]'))
         this.attachEventLogOutUser()
     }
 

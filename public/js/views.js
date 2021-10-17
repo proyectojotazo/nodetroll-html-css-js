@@ -68,12 +68,10 @@ export const navBarView = (isAuth) => {
         `<a href="/login.html" class="navbar-brand">Inicia Sesión</a>
         <a href="/register.html" class="navbar-brand">Regístrate</a>`
 
-
     return `<a href="/" class="navbar-brand">Wallatroll</a>
     <a href="/createad.html" class="navbar-brand">Crea Anuncio</a>
     ${showLogOut}
     <form class="form-inline mx-2">
         <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
-        <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
     </form>`
 }

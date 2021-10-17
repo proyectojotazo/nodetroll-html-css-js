@@ -11,6 +11,11 @@ export default {
         return this.checkHtmlInyection([ad])[0]
     },
 
+    searchAd: async function(adName) {
+        const data = await RequestServices.getSearch(adName)
+        return data.length > 0 ? this.checkHtmlInyection(data) : data
+    },
+
     createAd: async function(body) {
         const path = 'api/ads'
         await RequestServices.post(body, path)

@@ -8,7 +8,8 @@ export default {
         SHOW_LOGGED: 'SHOW_LOGGED',
         SHOW_ERROR: 'SHOW_ERROR',
         SHOW_LOADER: 'SHOW_LOADER',
-        HIDE_LOADER: 'HIDE_LOADER'
+        HIDE_LOADER: 'HIDE_LOADER',
+        SEARCH: 'SEARCH'
     },
 
     subscribe: function(topic, listener) {

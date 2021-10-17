@@ -6,6 +6,10 @@ export default class IndexController {
     constructor(element) {
         this.element = element
         this.showAds()
+
+        PubSub.subscribe(PubSub.events.SEARCH, params => {
+            this.showSearchedAds(params)
+        })
     }
 
     async showAds() {
@@ -30,6 +34,37 @@ export default class IndexController {
             PubSub.publish(PubSub.events.HIDE_LOADER)
         }
 
+    }
+
+    async showSearchedAds(params) {
+        const { value, search } = params
+        if (search) {
+            PubSub.publish(PubSub.events.SHOW_LOADER)
+            try {
+                const ads = await AdsServices.searchAd(value)
+                if (ads.length !== 0) {
+                    // Si hay anuncios pintarlos
+                    this.element.innerHTML = ''
+                    ads.forEach(ad => {
+                        const card = this.createCard(ad)
+                        this.element.appendChild(card)
+                    })
+
+                } else {
+                    // Si no hay anuncios mostrar mensaje de que no hay anuncios
+                    this.element.innerHTML = ''
+                    const noAds = this.createMessageNoAds()
+                    this.element.appendChild(noAds)
+                }
+            } catch (error) {
+                PubSub.publish(PubSub.events.SHOW_ERROR, error)
+            } finally {
+                PubSub.publish(PubSub.events.HIDE_LOADER)
+            }
+        } else {
+            this.element.innerHTML = ''
+            this.showAds()
+        }
     }
 
     createCard(ad) {
